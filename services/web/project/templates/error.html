@@ -1,0 +1,15 @@
+{% extends "home_layout.html" %}
+
+{% from "macros/flashed_messages.html" import flashed_messages with context %}
+
+{% block main %}
+<div class="text-center">
+    <h1>
+{{ error.code }}<br>
+{{ error.title }}<br>
+{{ error.message }}<br>
+<a href="/home">&larr; Back to the homepage</a>
+</h1>
+</div>
+
+{% endblock %}

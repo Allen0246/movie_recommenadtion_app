@@ -1,0 +1,8 @@
+/db/postgres/
+/services/web/project/log/
+kerdesek.txt
+
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
