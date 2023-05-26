@@ -10327,6 +10327,17 @@ nav[aria-label="breadcrumb"] li:before {
   padding: 0 0 0 60px;
   margin-bottom: 0;
   font-size: 14px; }
+  
+.table-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+@media (max-width: 800px) {
+    .table-container {
+        width: 100%;
+    }
+}
 
 .site-footer {
   background: #efefef;

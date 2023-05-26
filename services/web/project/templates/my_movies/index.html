@@ -9,9 +9,9 @@
 
 {% block main %}
 <h4><p class="text-center"><b>Already seen movies as {{ current_user.username }}:</b></p></h4>
-<div style="max-width: 800px; margin: auto;">
+<div class="table-container">
 <a href="/my_movies/export" class="btn btn-primary my-3">Export</a>
-<table id="example" class="table table-bordered table-striped table-hover" style="width: 800px">
+<table id="example" class="table table-bordered table-striped table-hover" style="width: 100%">
     <thead>
         <tr>
             <th>Title</th>

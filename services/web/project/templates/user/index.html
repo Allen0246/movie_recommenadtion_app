@@ -6,7 +6,7 @@
 
 {% block main %}
 <h4><p class="text-center"><b>Users:</b></p></h4>
-<div style="max-width: 800px; margin: auto;">
+<div class="table-container">
 
     {% if current_user.has_role('admin') %}
 
@@ -14,7 +14,7 @@
 
     {% endif %}
 
-    <table id="example" class="table table-bordered table-striped table-hover" style="width: 800px">
+    <table id="example" class="table table-bordered table-striped table-hover" style="width: 100%">
         <thead>
             <tr>
                 <th>ID</th>
