@@ -1,0 +1,91 @@
+{% from "macros/flashed_messages.html" import flashed_messages with context %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+ 
+    <link rel="stylesheet" href="/static/css/fontawesome.min.css">
+    <link rel="stylesheet" href="/static/css/font_home.css">
+    <link rel="stylesheet" href="/static/css/home_style.css" />
+
+    {% block head %}
+    {% endblock %}
+
+    <title>
+      Movie recommendation application
+    </title>
+  </head>
+
+  {% block body %}
+
+  <body>
+
+  <div class="section">
+	<div class="container-fluid mt-4">
+		{{ flashed_messages() }}
+
+  <div class="site-mobile-menu site-navbar-target">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close">
+          <span class="icofont-close js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
+    <nav class="site-nav">
+        <div class="container">
+          <div class="menu-bg-wrap">
+            <div class="site-navigation">
+              <a href="/home" class="logo m-0 float-start">Movie recommendation application</a>
+      
+              <ul
+                class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end"
+              >
+                <li class="active"><a href="/home">Home</a></li>
+                <li><a href="/movies">Movies</a></li>
+                <li><a href="/my_movies">My movies</a></li>
+                <li><a href="/recommendation">Movie recommendation</a></li>
+                {% if current_user.has_role('admin') %}
+                <li><a href="/user">User</a></li>
+                <li><a href="/log_files">System log</a></li>
+                {% endif %}
+                {% if current_user.is_authenticated %}
+                <li><a href="/logout">Log out</a></li>
+                {% else %}
+                <li><a href="/login">Log in</a></li>
+                {% endif %}
+
+
+
+                
+              </ul>
+      
+              <a
+                href="#"
+                class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none"
+                data-toggle="collapse"
+                data-target="#main-navbar"
+              >
+                <span></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+		{% block main %}
+		{% endblock %}
+    <script src="/static/vendor/bootstrap-5.2.3/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/navbar.js"></script>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/fontawesome.min.js"></script>
+    
+    {% block scripts %}
+    {% endblock %}
+</body>
+<br>
+
+{% endblock %}
+</html>

@@ -1,0 +1,64 @@
+{% extends "home_layout.html" %} 
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="/static/vendor/datatables/css/datatables.min.css" />
+{% endblock %}  
+
+{% block main %}
+<h4><p class="text-center"><b>Users:</b></p></h4>
+<div class="table-container">
+
+    {% if current_user.has_role('admin') %}
+
+        <a href="/user/add" class="btn btn-primary my-3">Create a new User</a>
+
+    {% endif %}
+
+    <table id="example" class="table table-bordered table-striped table-hover" style="width: 100%">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Role</th>
+                {% if current_user.has_role('admin') %}
+                <th >Operations</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.role_name.capitalize() }}</td>
+                {% if current_user.has_role('admin') %}
+                <td>
+                    <a class="btn btn-primary" href="/user/edit/{{ user.id }}" title="Edit">
+                        EDIT
+                    </a>
+                    {% if current_user.id != user.id and user.id != 1%}
+
+                    <a class="button btn btn-sm btn-light" href="/user/delete/{{ user.id }}" title="Delete"> DELETE</a>
+
+                    {% endif %}
+                </td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+    {% endblock %}
+
+    {% block scripts %}
+    <script src="/static/vendor/datatables/js/datatables.min.js"></script>
+    <script>
+        $(document).ready( function () {
+            $('#example').dataTable( {
+        }); 
+    
+    } );
+    </script>
+    {% endblock %}

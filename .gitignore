@@ -1,0 +1,7 @@
+/db/postgres/
+/services/web/project/log/
+
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
