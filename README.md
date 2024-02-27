@@ -22,6 +22,7 @@
 * Nginx
 * Bootstrap
 * datatables
+* docker
 
 ## Applikáció használata
 * Ha nem default ```usert``` vagy default ```admint``` szeretnénk használni, hozzunk létre egy fiókot a ```https://localhost:1334/register``` oldalon.
