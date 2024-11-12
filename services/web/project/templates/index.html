@@ -1,0 +1,18 @@
+{% from "macros/flashed_messages.html" import flashed_messages with context %}
+{% from "macros/render_field.html" import render_field with context %}
+{% extends "index_layout.html" %}
+
+{% block main %}
+
+    <p class="text-center"></p>
+<h1 class="text-center">Movie recommendation application</h1>
+
+
+<div class=" my-5">
+<a href="/login" class="form-control btn btn-primary rounded submit px-3">Log in</a>
+</div>
+
+<div class=" my-5">
+<a href="/register" class="form-control btn btn-primary rounded submit px-3">Sign up</a><br>
+</div>
+{% endblock %}

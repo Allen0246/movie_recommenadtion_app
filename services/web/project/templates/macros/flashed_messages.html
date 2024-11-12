@@ -1,0 +1,33 @@
+{% macro flashed_messages() %}
+
+{% for category, message in get_flashed_messages(with_categories=true) %}
+  <div class="col-xl-12 col-md-12 mt-4 mb-4 pl-0 pr-0">
+    <div class="card border-left-{{ category }} shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="h6 mb-0 font-weight-bold text-gray-800">
+                <div class="col-auto">
+                    {% if category == 'danger' %}
+                      <div class="text-danger">
+                        {{ message | safe }}
+                      </div>
+                    {% elif category == 'success' %}
+                      <div class="text-success">
+                        {{ message | safe }}
+                      </div>
+                    {% else %}
+                      <div class="text-primary">
+                        {{ message | safe }}
+                      </div>
+                    {% endif %}
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endfor %}
+{% endmacro %}

@@ -1,0 +1,70 @@
+{% from "macros/flashed_messages.html" import flashed_messages with context %}
+{% from "macros/render_field.html" import render_field with context %}
+{% extends "home_layout.html" %}
+
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="/static/vendor/datatables/css/datatables.min.css" />
+{% endblock %}  
+
+{% block main %}
+<h4><p class="text-center"><b>Already seen movies as {{ current_user.username }}:</b></p></h4>
+<div class="table-container">
+<a href="/my_movies/export" class="btn btn-primary my-3">Export</a>
+<table id="example" class="table table-bordered table-striped table-hover" style="width: 100%">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Release Date</th>
+            <th>Category</th>
+            <th>Rating</th>
+            <th>The date <br>when you saw</th>
+            <th>Operations</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for movie in movies %}
+        <tr>
+            <td>{{ movie.title }}</td>
+            <td>{{ movie.release_date }}</td>
+
+            <td>
+                {% for genre in movie.genres %}
+            -{{ genre }}<br>
+            {% endfor %}
+            </td>
+            <td>{{ movie.rating }}</td>
+            <td>{{ movie.date }}</td>
+            <td>
+                <a href="/my_movies/not_seen/{{movie.id}}" title="Haven't seen"> <i class="fa-regular fa-square-minus fa-2xl"></i></a>
+                <a href="/my_movies/rewatch/{{movie.id}}" title="Rewatch"> <i class="fa-solid fa-rotate-right fa-2xl"></i></a>
+            </td>                            
+        </tr>
+        {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <th>Title</th>
+            <th>Release Date</th>
+            <th>Category</th>
+            <th>Rating</th>
+            <th>The date <br>when you saw</th>
+            <th>Operations</th>
+        </tr>
+    </tfoot>
+</table>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/vendor/datatables/js/datatables.min.js"></script>
+<script>
+    $(document).ready( function () {
+        $('#example').dataTable( {
+    }); 
+
+} );
+</script>
+{% endblock %}

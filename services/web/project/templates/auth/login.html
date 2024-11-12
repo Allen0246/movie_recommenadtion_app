@@ -1,0 +1,22 @@
+{% from "macros/flashed_messages.html" import flashed_messages with context %}
+{% from "macros/render_field.html" import render_field with context %}
+{% extends "index_layout.html" %}
+
+
+{% block main %}
+
+<form method="POST" action="/login">
+    <h3 class="mb-4">Log in</h3>
+    {{ form.csrf_token }}
+    <div class="form-group mb-3">
+    {{render_field(form.username, class="form-control", placeholder="Username")}}
+    </div>
+    <div class="form-group mb-3">
+    {{render_field(form.password, class="form-control", placeholder="Password")}}
+    </div> 
+
+<div class="form-group">
+    <button type="submit" class="form-control btn btn-primary rounded submit px-3">Log in</button>
+</div>
+<p class="text-center">Click <a href="/register">HERE</a> to sign up!</p>
+{% endblock %}

@@ -1,0 +1,56 @@
+version: '3.7'
+services:
+  web:
+    build: ./services/web
+    command: gunicorn --log-level info --log-file=/log/movie_recommendation_gunicorn.log --workers 4 --bind 0.0.0.0:5000 project:app
+    volumes:
+      - ./services/web/project/static:/app/project/static
+      - ./services/web/project/log:/app/project/log
+      - ./services/web/project/templates:/app/project/templates
+    depends_on:
+      - postgres
+    expose:
+      - 5000
+    env_file:
+      - ./.env
+    restart: unless-stopped
+    networks:
+      movierec:
+
+  postgres:
+    image: postgres:12.0-alpine
+    container_name: postgres
+    environment:
+      TZ: 'Europe/Budapest'
+      PGTZ: 'Europe/Budapest'
+    volumes:
+        - ./db/postgres:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    env_file:
+      - ./.env
+    restart: unless-stopped
+    networks:
+      movierec:
+      
+  nginx:
+    build: ./services/nginx
+    volumes:
+      - ./services/web/project/static:/app/project/static
+    ports:
+      # - 1334:80 #http
+      - 1334:443 #https
+    depends_on:
+      - web
+    restart: unless-stopped
+    networks:
+      movierec:
+
+
+networks:
+  movierec:
+
+volumes:
+  postgres:
+  static:
+  logs:
