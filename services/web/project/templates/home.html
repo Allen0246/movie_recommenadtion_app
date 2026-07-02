@@ -1,0 +1,22 @@
+{% from "macros/flashed_messages.html" import flashed_messages with context %}
+{% from "macros/render_field.html" import render_field with context %}
+{% extends "home_layout.html" %}
+
+{% block main %}
+{% if current_user.is_authenticated %}
+<div class ="form-group py-5">
+  <div  class="text-center">
+    
+    <p class="lead text-gray-800 mb-2">Welcome on the site <b>{{ current_user.username }}</b>! </p>
+  </div>
+</div>
+{% else %}
+<div class ="form-group py-5">
+  <div  class="text-center">
+    
+    <p class="lead text-gray-800 mb-2">You are not logged in ! </p>
+  </div>
+</div>
+{% endif %}
+
+{% endblock %}

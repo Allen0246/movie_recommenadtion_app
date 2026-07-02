@@ -1,0 +1,27 @@
+{% extends "home_layout.html" %}
+
+{% block main %}
+<!-- Begin Page Content -->
+<div class="d-flex justify-content-center">
+    <div><h1>{{file_name}}</h1>
+        <div class="card shadow mb-4 " style="width: 1000px;">
+            <div class="card-body">
+                <div class="col-12">
+                    <textarea class="form-control" id="log_file" readonly="true" style="height:400px; white-space: pre;"></textarea>
+                </div>
+                <div class="m-2">
+                    <a class="btn btn-primary" href="/log_files">Back</a>
+                </div>            
+            </div>
+
+</div>
+</div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $('#log_file').val('{{file_data | tojson}}');
+</script>
+{% endblock %}

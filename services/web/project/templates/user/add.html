@@ -1,0 +1,25 @@
+{% extends "home_layout.html" %}
+{% from "macros/render_field.html" import render_field with context %}
+{% block main %}
+<div class="d-flex justify-content-center">
+    <div><h1>Create a new User</h1>
+        <form method="POST" action="{{ url_for('user.add') }}" role="form">
+            {{ form.csrf_token }}
+   
+            {{render_field(form.username, class="form-control-label", placeholder="Username")}}
+    
+            {{render_field(form.password, class="form-control-label", placeholder="Password")}}
+    
+            {{render_field(form.confirm, class="form-control-label", placeholder="Password")}}
+    
+            {% set z = form.role.process_data(roles) %}
+            {{render_field(form.role, class="form-control-label", placeholder="Role")}}
+    
+
+            <button class="btn btn-primary my-4" type="submit">Save</button>
+            <a class="btn btn-light my-4" href="/user">Cancel</a>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "home_layout.html" %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="/static/vendor/datatables/css/datatables.min.css" />
+{% endblock %}  
+
+{% block main %}
+<h4><p class="text-center"><b>Logfiles:</b></p></h4>
+<div class="table-container">
+<table id="example" class="table table-bordered table-striped table-hover" style="width: 100%">
+    <thead>
+        <tr>
+            <th>Log file name</th>
+            <th>Date of modification</th>
+            <th class="no-sort">Operations</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for d in data %}
+        <tr>
+            <td>{{ d.name }}</td>
+            <td>{{ d.last_modified }}</td>
+            <td>
+                <a href="/log_files/{{ d.name }}" title="Download">
+                    Download
+                </a>
+                <a href="/log_files/view/{{ d.name }}" title="View">
+                    View
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+
+
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/vendor/datatables/js/datatables.min.js"></script>
+<script>
+    $(document).ready( function () {
+        $('#example').dataTable( {
+    }); 
+
+} );
+</script>
+{% endblock %}

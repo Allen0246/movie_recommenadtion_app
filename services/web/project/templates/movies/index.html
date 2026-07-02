@@ -1,0 +1,75 @@
+{% from "macros/flashed_messages.html" import flashed_messages with context %}
+{% from "macros/render_field.html" import render_field with context %}
+{% extends "home_layout.html" %}
+
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="/static/vendor/datatables/css/datatables.min.css" />
+{% endblock %}  
+
+{% block main %}
+<h4><p class="text-center"><b>Movie database:</b></p></h4>
+<div class="table-container">
+    <a href="/movies/export" class="btn btn-primary my-3">Export</a>
+    <a href="/movies/update" class="btn btn-primary my-3">Update</a>
+    <table id="example" class="table table-bordered table-striped table-hover" style="width: 100%">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Release Date</th>
+            <th>Overview</th>
+            <th>Category</th>
+            <th>Operations</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for movie in movies %}
+        <tr>
+            <td>{{ movie.title }}</td>
+            <td>{{ movie.release_date }}</td>
+            <td>{{ movie.overview }}</td>
+            <td>
+            {% for genre in movie.genres %}
+                -{{genre.name}}<br>
+            {% endfor %}
+            </td>
+                {% if current_user in movie.users %}
+                <td>
+                    <a href="/movies/not_seen/{{movie.id}}" title="Haven't seen"> <i class="fa-regular fa-square-minus fa-2xl"></i></a>
+                    <a href="/movies//rewatch/{{movie.id}}" title="Rewatch"> <i class="fa-solid fa-rotate-right fa-2xl"></i></a>
+                </td>
+                {% else %}
+                <td>
+                    <a href="/movies/saw/{{movie.id}}" title="Already watched"> <i class="fa-regular fa-square-check fa-2xl"></i></a>
+                 </a>
+                </td>
+                </td>
+                {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</tbody>
+    <tfoot>
+        <tr>
+            <th>Title</th>
+            <th>Release Date</th>
+            <th>Overview</th>
+            <th>Category</th>
+            <th>Operations</th>
+        </tr>
+    </tfoot>
+</table>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/vendor/datatables/js/datatables.min.js"></script>
+<script>
+    $(document).ready( function () {
+        $('#example').dataTable( {
+    }); 
+
+} );
+</script>
+{% endblock %}

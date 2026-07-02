@@ -1,0 +1,53 @@
+{% extends "home_layout.html" %}
+
+{% block head  %}
+
+{% endblock %} 
+
+{% block main %}
+
+<div class="text-center">
+<h1 >What should I watch today?</h1>
+
+
+<h5>Title</h5>
+<h1>{{movie.title}}</h1>
+
+<hr>
+
+<h5>Overview</h5>
+
+<h4>{{movie.overview}}</h4>
+
+<hr>
+
+<h5>Popularity</h5>
+
+<h4>{{movie.popularity}}</h4>
+
+<hr>
+
+<h5>Release Date</h5>
+
+<h4>{{movie.release_date}}</h4>
+
+<hr>
+
+<h5>Genre</h5>
+
+<h4>
+{% for genre in movie.genres %}
+-{{genre.name}}<br>
+{% endfor %}</h4>
+
+
+</div>
+
+<a href="/recommendation" class="btn btn-primary my-3">Back</a>
+
+
+ {% endblock %}
+
+ {% block scripts %}
+
+{% endblock %}
